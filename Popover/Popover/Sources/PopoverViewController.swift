@@ -40,6 +40,8 @@ public class PopoverViewController: UIViewController {
     public var offset: CGPoint = CGPoint.zero
     /// 蒙板颜色
     public var maskColor: UIColor = UIColor(white: 0, alpha: 0)
+    /// 是否安全区显示
+    public var isSafeAreaDisplay: Bool = true
     /// 显示及消失回调
     public var callback: ((PopoverViewController, Bool/*显示(true);消失(false)*/) -> Void)?
     /// 显示动画
@@ -250,7 +252,7 @@ public class PopoverViewController: UIViewController {
     /// 调整屏幕边缘距离
     func adjustSideEdge(sourceFrame: CGRect) -> CGRect {
         var safeAreaInsets = UIEdgeInsets.zero
-        if #available(iOS 11.0, *), let keyWindow = UIApplication.shared.keyWindow {
+        if #available(iOS 11.0, *), isSafeAreaDisplay, let keyWindow = UIApplication.shared.keyWindow {
             safeAreaInsets = keyWindow.safeAreaInsets
         }
         
