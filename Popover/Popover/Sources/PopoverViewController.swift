@@ -249,19 +249,24 @@ public class PopoverViewController: UIViewController {
     
     /// 调整屏幕边缘距离
     func adjustSideEdge(sourceFrame: CGRect) -> CGRect {
+        var safeAreaInsets = UIEdgeInsets.zero
+        if #available(iOS 11.0, *), let keyWindow = UIApplication.shared.keyWindow {
+            safeAreaInsets = keyWindow.safeAreaInsets
+        }
+        
         var frame = sourceFrame
         switch arrowDirection {
         case .up, .down:
             if frame.origin.x < sideEdge {
-                frame.origin.x = sideEdge
+                frame.origin.x = sideEdge + safeAreaInsets.left
             } else if frame.origin.x + frame.width + sideEdge > self.view.frame.width {
-                frame.origin.x = self.view.frame.width - sideEdge - frame.width
+                frame.origin.x = self.view.frame.width - sideEdge - frame.width - safeAreaInsets.right
             }
         case .left, .right:
             if frame.origin.y < sideEdge {
-                frame.origin.y = sideEdge
+                frame.origin.y = sideEdge + safeAreaInsets.top
             } else if frame.origin.y + frame.height + sideEdge > self.view.frame.height {
-                frame.origin.y = self.view.frame.height - sideEdge - frame.height
+                frame.origin.y = self.view.frame.height - sideEdge - frame.height - safeAreaInsets.bottom
             }
         }
         return frame
