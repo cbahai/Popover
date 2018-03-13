@@ -89,6 +89,7 @@ class ViewController: UIViewController {
         pvc.arrowDirection = .right
         pvc.arrowSize = CGSize(width: 10, height: 20)
         pvc.fillColor = UIColor.purple
+        pvc.sideEdge = 5
         pvc.show(in: self)
     }
 }
