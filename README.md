@@ -15,6 +15,11 @@ You can use [Carthage](https://github.com/Carthage/Carthage) to install `Popover
 ```
 github "cbahai/Popover"
 ```
+Or
+
+```
+git "ssh://gitlab/fengyonghai/Popover.git"
+```
 
 ## Usage
 
